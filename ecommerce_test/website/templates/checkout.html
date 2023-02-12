@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title>Checkout Page</title>
+  </head>
+  <body>
+    <h1>Checkout Page</h1>
+    <form action="/checkout" method="post">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required><br><br>
+      <label for="address">Address:</label>
+      <input type="text" id="address" name="address" required><br><br>
+      <label for="address">City:</label>
+      <input type="text" id="city" name="city" required><br><br>
+      <label for="number">Size:</label>
+      <input type="number" id="size" name="size" required><br><br>
+      <label for="number">Phone number:</label>
+      <input type="number" id="number" name="number" required><br><br>
+      <p>Payment type:</p>
+      <input type="radio" id="cash" name="cash" value="Cash" checked>
+      <label for="cash">Cash</label><br>
+<br>
+<br>
+      <input type="submit" value="Submit">
+    </form>
+  </body>
+</html>

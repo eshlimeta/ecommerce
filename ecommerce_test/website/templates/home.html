@@ -1,0 +1,154 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home page</title>
+    <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+  </head>
+  <body>
+
+    <!-- Start Top Bar -->
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <ul class="menu">
+          <li class="menu-text">Online shop</li>
+          {% if user.is_authenticated %}
+          <li><a href="/logout" id="logout">Logout</a></li>
+          <li><a href="/wishlist" id="wishlist">Wishlist</a></li>
+          <li><a class="nav-item nav-link" id="cart" href="/cart">Cart</a></li>
+          <li><b>Hello, {{ user.first_name }}</b></li>
+          {% else %}
+          <li><a href="/login" id="login">Login</a></li>
+          <li><a href="/sign-up" id="signUp">Sign up</a></li>
+          {% endif %}
+        </ul>
+      </div>
+      <div class="top-bar-right">
+        <ul class="menu">
+          <li><a href="#">Three</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- End Top Bar -->
+    {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %} {% if category ==
+      'error' %}
+      <div class="alert alert-danger alter-dismissable fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% else %}
+      <div class="alert alert-success alter-dismissable fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endif %} {% endfor %} {% endif %} {% endwith %}
+
+    <div class="orbit" role="region" aria-label="Favorite Space Pictures" data-orbit>
+      <ul class="orbit-container">
+        <button class="orbit-previous" aria-label="previous"><span class="show-for-sr">Previous Slide</span>&#9664;</button>
+        <button class="orbit-next" aria-label="next"><span class="show-for-sr">Next Slide</span>&#9654;</button>
+        <li class="orbit-slide">
+          <img src="https://iili.io/HEWpzoQ.png">
+        </li>
+        <li class="orbit-slide is-active">
+          <img src="https://iili.io/HEWm5uf.png">
+        </li>
+        <li class="orbit-slide">
+          <img src="https://iili.io/HEX9fTb.png">
+        </li>
+      </ul>
+    </div>
+
+    <div class="row column text-center">
+      <h2>Bestsellers</h2>
+      <hr>
+    </div>
+
+    <div class="row small-up-2 large-up-4">
+      <div class="column">
+        <img class="thumbnail" src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/g5ipp7dymwsfsltjb6ro/air-vapormax-plus-mens-shoes-nC0dzF.png">
+        <h5>Nike Air VaporMax Plus</h5>
+        <p>210€</p>
+        <a href="/product/6" class="button expanded">Buy</a>
+      </div>
+      <div class="column">
+        <img class="thumbnail" src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/2104cfe9-9188-4dc3-8919-636ad3e827a3/dunk-high-1985-shoes-L05QbB.png">
+        <h5>Nike Dunk High 1985</h5>
+        <p>140€</p>
+        <a href="/product/8" class="button expanded">Buy</a>
+      </div>
+      <div class="column">
+        <img class="thumbnail" src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/8f6c7eb1-2a44-443d-a3ba-076c962e529d/dunk-low-se-big-kids-shoes-HLWkT5.png">
+        <h5>Nike Dunk Low SE</h5>
+        <p>120€</p>
+        <a href="/product/2" class="button expanded">Buy</a>
+      </div>
+      <div class="column">
+        <img class="thumbnail" src="https://static.nike.com/a/images/t_PDP_864_v1/f_auto,b_rgb:f5f5f5/86f61394-9929-4f2b-97c1-bc4f53304331/air-jordan-1-mid-se-womens-shoes-p7vt3f.png">
+        <h5>Air Jordan 1 Mid SE</h5>
+        <p>135€</p>
+        <a href="/product/4" class="button expanded">Buy</a>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row column">
+      <div class="callout primary">
+        <h3>Really big special this week on items.</h3>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row column text-center">
+      <h2>Our products</h2>
+      <hr>
+    </div>
+
+    <div class="row small-up-2 medium-up-3 large-up-6">
+      {% for item in PRODUCT %}
+      <div class="column">
+        <img class="thumbnail" src="{{ item.img_src }}">
+        <h5>{{ item.name }}</h5>
+        <p>{{ item.price }}€</p>
+        <a href="/product/{{ item.id }}" class="button small expanded hollow">Buy</a>
+      </div>
+      {% endfor %}
+    </div>
+
+    <hr>
+    
+
+    <div class="callout large secondary">
+      <div class="row">
+        <div class="large-4 columns">
+          <h5>Online shop</h5>
+          <p>This is a demonstration for an ecommerce shop which sells shoes.</p>
+        </div>
+        <div class="large-3 large-offset-2 columns">
+          <ul class="menu vertical">
+            <li><a href="/">Home</a></li>
+            <li><a href="/sign-up">Sign up</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/wishlist">Wishlist</a></li>
+            <li><a href="/cart">Cart</a></li>
+          </ul>
+        </div>
+        
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>
